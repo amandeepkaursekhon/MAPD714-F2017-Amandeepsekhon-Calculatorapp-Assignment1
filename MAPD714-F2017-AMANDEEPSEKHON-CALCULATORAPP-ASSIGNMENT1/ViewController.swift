@@ -9,6 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
+    //-------------------------  Variables -------------------------
+
     var firstNumber: Double = 0;
     var SecondNumber: Double = 0;
     var answerNumber: Double = 0;
@@ -17,10 +20,14 @@ class ViewController: UIViewController {
   
     var performingMath: Bool = false
 
-    
+    //-------------------------  Outlets -------------------------
+
     
     @IBOutlet weak var displayLabel: UILabel!
     
+    
+    //-------------------------  Action methods -------------------------
+
     @IBAction func displaynumbers(_ sender: UIButton) {
         if displayLabel.text == "0" {
             displayLabel.text = ""
@@ -41,6 +48,7 @@ class ViewController: UIViewController {
                 displayLabel.text = String(sender.tag)
             }
             else {
+                
                 displayLabel.text = displayLabel.text! + String(sender.tag)
             }
         }
@@ -89,7 +97,7 @@ class ViewController: UIViewController {
                 firstNumber = 0;
                 SecondNumber = 0;
                 answerNumber = 0;
-                displayLabel.text = " ";
+                displayLabel.text = "0";
                
                 
             }
@@ -116,16 +124,20 @@ class ViewController: UIViewController {
                     
                     let isInt = floor(answerNumber) == answerNumber
                     
-                    if  isInt == true   {
-                        displayLabel.text = String(Int64(answerNumber))
+                    if  SecondNumber == 0 {
+                        displayLabel.text = "ERROR"
                     }
                     else    {
-                        displayLabel.text = String(answerNumber)
+                        if  isInt == true   {
+                            displayLabel.text = String(Int64(answerNumber))
+                        }
+                        else    {
+                            displayLabel.text = String(answerNumber)
+                        }
+
                     }
                 }
-                if  SecondNumber == 0 {
-                    displayLabel.text = "0"
-                }
+               
                 
             }
             
@@ -133,6 +145,9 @@ class ViewController: UIViewController {
         
 
     }
+    
+   //-------------------------decimal button -------------------------
+
     
     
    @IBAction func decimalbutton(_ sender: UIButton) {
@@ -155,14 +170,22 @@ class ViewController: UIViewController {
 //        isDecimal = true
     }
     
-
+    //------------------------- percentage button -------------------------
 
     @IBAction func percentagebutton(_ sender: UIButton) {
     }
     
     
+    
+        //-------------------------plus/minus button -------------------------
+    
     @IBAction func plusminusbutton(_ sender: UIButton) {
     }
+    
+    
+    
+    //------------------------- Inherited Methods -------------------------
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
