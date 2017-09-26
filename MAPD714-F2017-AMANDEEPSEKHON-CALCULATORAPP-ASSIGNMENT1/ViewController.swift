@@ -1,11 +1,10 @@
-//
-//  ViewController.swift
-//  MAPD714-F2017-AMANDEEPSEKHON-CALCULATORAPP-ASSIGNMENT1
-//
-//  Created by Amandeep Sekhon on 2017-09-25.
-//  Copyright © 2017 Amandeep Sekhon. All rights reserved.
-//
-
+/*
+ Name : Amandeep Kaur Sekhon
+ Date :24 sep 2017
+ Student id :300976886
+ Description: Calculator Application
+ Version 0.3 :add functions to the calculator app
+ */
 import UIKit
 
 class ViewController: UIViewController {
@@ -26,19 +25,25 @@ class ViewController: UIViewController {
         
         if answerNumber == 0
         {
-            if displayLabel.text == "+" {
-                displayLabel.text = String(sender.titleLabel!.text!)
-            }else  if displayLabel.text == "-" {
-                displayLabel.text = String(sender.titleLabel!.text!)
-            }else  if displayLabel.text == "x" {
-                displayLabel.text = String(sender.titleLabel!.text!)
-            }else  if displayLabel.text == "÷" {
-                displayLabel.text = String(sender.titleLabel!.text!)
-            }
-            else {
-                displayLabel.text = displayLabel.text! + sender.titleLabel!.text!
-            }
+            
+            
+            
+            if sign  == "+" || sign == "-" || sign == "x" || sign == "÷"
+                {
+                    
+                    displayLabel.text = String (sender.titleLabel!.text!)
+                    /*}else  if displayLabel.text == "-" {
+                     displayLabel.text = String(sender.tag)
+                     }else  if displayLabel.text == "x" {
+                     displayLabel.text = String(sender.tag)
+                     }else  if displayLabel.text == "÷" {
+                     displayLabel.text = String(sender.tag)
+                     }*/}
+                else {
+                    
+            displayLabel.text = displayLabel.text! + sender.titleLabel!.text!
         }
+    }
     }
     
     
@@ -51,23 +56,40 @@ class ViewController: UIViewController {
         if displayLabel.text != ""
         {
             
-            if sender.tag == 16
+            if sender.tag == 17
             {
                 sign = "+"
                 firstNumber = Double(displayLabel.text!)!
-            }else if sender.tag == 15
+                  displayLabel.text = "+"
+            }else if sender.tag == 16
             {
                 sign = "-"
                 firstNumber = Double(displayLabel.text!)!
-            }else if sender.tag == 14
+                  displayLabel.text = "-"
+            }else if sender.tag == 15
             {
                 sign = "÷"
                 firstNumber = Double(displayLabel.text!)!
-            }else if sender.tag == 13
+                  displayLabel.text = "÷"
+            }else if sender.tag == 14
             {
                 sign = "x"
                 firstNumber = Double(displayLabel.text!)!
-            }else if sender.tag == 17
+                  displayLabel.text = "x"
+            }
+            else if sender.tag == 11
+            {
+                sign = ""
+                firstNumber = 0
+                SecondNumber = 0
+                answerNumber = 0
+                displayLabel.text = "0"
+                
+            }
+                
+
+            
+            else if sender.tag == 18
             {
                 if firstNumber != 0 {
                     
@@ -75,7 +97,7 @@ class ViewController: UIViewController {
                     
                     if sign == "+"{
                         answerNumber = firstNumber + SecondNumber
-                                            }else if sign == "-"{
+                    }else if sign == "-"{
                         answerNumber = firstNumber - SecondNumber
                     }else if sign == "÷"{
                         answerNumber = firstNumber / SecondNumber
@@ -83,7 +105,6 @@ class ViewController: UIViewController {
                         answerNumber = firstNumber * SecondNumber
                     }
                     displayLabel.text = String(answerNumber)
-
                 }
                 
             }
