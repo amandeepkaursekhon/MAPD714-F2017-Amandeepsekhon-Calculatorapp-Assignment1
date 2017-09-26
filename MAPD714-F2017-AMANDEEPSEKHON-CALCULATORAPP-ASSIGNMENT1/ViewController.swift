@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     var answerNumber: Double = 0;
     var isDecimal:Bool = false
     var sign: String=""
+    var finalNumber: Double = 0;
+
   
     var performingMath: Bool = false
 
@@ -48,7 +50,10 @@ class ViewController: UIViewController {
                 displayLabel.text = String(sender.tag)
             }
             else {
-                
+            
+                displayLabel.numberOfLines = 1;
+             
+                displayLabel.adjustsFontSizeToFitWidth = true;
                 displayLabel.text = displayLabel.text! + String(sender.tag)
             }
         }
@@ -127,6 +132,7 @@ class ViewController: UIViewController {
                     if  SecondNumber == 0 {
                         displayLabel.text = "ERROR"
                     }
+                        
                     else    {
                         if  isInt == true   {
                             displayLabel.text = String(Int64(answerNumber))
@@ -173,8 +179,32 @@ class ViewController: UIViewController {
     //------------------------- percentage button -------------------------
 
     @IBAction func percentagebutton(_ sender: UIButton) {
-    }
+        
+        if displayLabel.text != ""
+            
+        {
+            if sender.tag == 12
+            {
+                sign = "%"
+                firstNumber = Double(displayLabel.text!)!
+                SecondNumber = Double(displayLabel.text!)!
+                
+                displayLabel.text = "%";
+            }
+            if firstNumber != 0 {
+                
+                SecondNumber = Double(displayLabel.text!)!
+                
+                if sign == "%"{
+                    answerNumber = firstNumber * SecondNumber
+                }else if sign == "÷"{
+                   finalNumber = answerNumber / 100
+                }
+                displayLabel.text = String(finalNumber)
+                
+
     
+            }}}
     
     
         //-------------------------plus/minus button -------------------------
