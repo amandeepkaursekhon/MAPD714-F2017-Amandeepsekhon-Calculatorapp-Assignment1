@@ -9,81 +9,88 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var firstNumber: Double = 0
-    var SecondNumber: Double = 0
-    var answerNumber: Double = 0
-    var sign = ""
+    var firstNumber: Double = 0;
+    var SecondNumber: Double = 0;
+    var answerNumber: Double = 0;
+    var isDecimal:Bool = false
+    var sign: String=""
+  
+    var performingMath: Bool = false
+
     
     
     @IBOutlet weak var displayLabel: UILabel!
     
     @IBAction func displaynumbers(_ sender: UIButton) {
-    
-    if displayLabel.text == "0"
-    { displayLabel.text = "" }
-        
-        
-        if answerNumber == 0
-        {
-            
-            
-            
-            if sign  == "+" || sign == "-" || sign == "x" || sign == "÷"
-                {
-                    
-                    displayLabel.text = String (sender.titleLabel!.text!)
-                    /*}else  if displayLabel.text == "-" {
-                     displayLabel.text = String(sender.tag)
-                     }else  if displayLabel.text == "x" {
-                     displayLabel.text = String(sender.tag)
-                     }else  if displayLabel.text == "÷" {
-                     displayLabel.text = String(sender.tag)
-                     }*/}
-                else {
-                    
-            displayLabel.text = displayLabel.text! + sender.titleLabel!.text!
+        if displayLabel.text == "0" {
+            displayLabel.text = ""
         }
-    }
-    }
-    
-    
-
-    @IBAction func displayoperators(_ sender: UIButton) {
-    
-        // x = 13, ÷ = 14, - = 15, + = 16, =  = 17
+        if displayLabel.text == "0.0"{
+            displayLabel.text = "0."
+        }
         
+        if performingMath == false
+        {
+            if displayLabel.text == "+" {
+                displayLabel.text = String(sender.tag)
+            }else  if displayLabel.text == "-" {
+                displayLabel.text = String(sender.tag)
+            }else  if displayLabel.text == "x" {
+                displayLabel.text = String(sender.tag)
+            }else  if displayLabel.text == "÷" {
+                displayLabel.text = String(sender.tag)
+            }
+            else {
+                displayLabel.text = displayLabel.text! + String(sender.tag)
+            }
+        }
+        else if performingMath == true {
+            
+            displayLabel.text = String(sender.tag)
+            //answerNumber = 0;
+            performingMath = false;
+        }
+        
+    }
+
+
+    @IBAction func displayoperators(_ sender: UIButton)
+    {
+    
+        // x = 14, ÷ = 15, - = 16, + = 17, =  = 18 C=11
         
         if displayLabel.text != ""
+        
         {
-            
-            if sender.tag == 17
+        if sender.tag == 17
             {
                 sign = "+"
                 firstNumber = Double(displayLabel.text!)!
-                  displayLabel.text = "+"
+                  displayLabel.text = "+";
             }else if sender.tag == 16
             {
                 sign = "-"
                 firstNumber = Double(displayLabel.text!)!
-                  displayLabel.text = "-"
+                  displayLabel.text = "-";
             }else if sender.tag == 15
             {
                 sign = "÷"
                 firstNumber = Double(displayLabel.text!)!
-                  displayLabel.text = "÷"
+                  displayLabel.text = "÷";
             }else if sender.tag == 14
             {
                 sign = "x"
                 firstNumber = Double(displayLabel.text!)!
-                  displayLabel.text = "x"
+                  displayLabel.text = "x";
             }
             else if sender.tag == 11
             {
                 sign = ""
-                firstNumber = 0
-                SecondNumber = 0
-                answerNumber = 0
-                displayLabel.text = "0"
+                firstNumber = 0;
+                SecondNumber = 0;
+                answerNumber = 0;
+                displayLabel.text = " ";
+               
                 
             }
                 
@@ -105,6 +112,19 @@ class ViewController: UIViewController {
                         answerNumber = firstNumber * SecondNumber
                     }
                     displayLabel.text = String(answerNumber)
+                    
+                    
+                    let isInt = floor(answerNumber) == answerNumber
+                    
+                    if  isInt == true   {
+                        displayLabel.text = String(Int64(answerNumber))
+                    }
+                    else    {
+                        displayLabel.text = String(answerNumber)
+                    }
+                }
+                if  SecondNumber == 0 {
+                    displayLabel.text = "0"
                 }
                 
             }
@@ -115,11 +135,28 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func decimalbutton(_ sender: UIButton) {
+   @IBAction func decimalbutton(_ sender: UIButton) {
+//        if isDecimal==false
+//        {
+//            isDecimal = true
+//            
+//            if displayLabel.text == ""
+//            {
+//                firstNumber = Double("0" + ".")!
+//                displayLabel.text = String(firstNumber)
+//                
+//            }
+//            else
+//            {
+//                firstNumber = Double(displayLabel.text! + ".")!
+//                displayLabel.text = displayLabel.text! + "."
+//            }
+//        }
+//        isDecimal = true
     }
-  
     
-   
+
+
     @IBAction func percentagebutton(_ sender: UIButton) {
     }
     
