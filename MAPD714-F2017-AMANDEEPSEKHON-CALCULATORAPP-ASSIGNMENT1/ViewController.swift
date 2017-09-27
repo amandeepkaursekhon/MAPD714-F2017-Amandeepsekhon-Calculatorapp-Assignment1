@@ -3,7 +3,7 @@
  Date :24 sep 2017
  Student id :300976886
  Description: Calculator Application
- Version 0.3 :add functions to the calculator app
+ Version 0.3 :adding plus-minus button
  */
 import UIKit
 
@@ -20,8 +20,9 @@ class ViewController: UIViewController {
     var finalNumber: Double = 0;
     var accumulation:Double!
     var number:Double = 0;
-  
+   var number1:String = ""
     var performingMath: Bool = false
+    var isnegative:Bool = false
 
     //-------------------------  Outlets -------------------------
 
@@ -209,7 +210,7 @@ class ViewController: UIViewController {
 
     @IBAction func percentagebutton(_ sender: UIButton) {
         
-        //percent code has functionality for instance : first number =
+        //percent code has functionality for instance : first value =2100    second value =+13  final value =273
         
         if displayLabel.text != ""
             
@@ -237,13 +238,29 @@ class ViewController: UIViewController {
     
         //-------------------------plus/minus button -------------------------
     
-    @IBAction func plusminusbutton(_ sender: UIButton) {
+    @IBAction func plusminusbutton(_ sender: UIButton)           //adding plus and minus before the number
+    {
         
-        
+    if(displayLabel.text != "0")
+        {
+        number = Double(displayLabel.text!)!
+        if number > 0
+        {
+            displayLabel.text = "-" + displayLabel.text!
+            isnegative = true
+        }
+        else
+        {
+        number1 = displayLabel.text!
+            
+            number1.remove(at: number1.startIndex)
+            displayLabel.text = String(number1)
+            isnegative = false
+        }
     }
     
-    
-    
+}
+
     //------------------------- Inherited Methods -------------------------
 
     
